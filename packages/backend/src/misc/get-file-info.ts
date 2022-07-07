@@ -11,7 +11,6 @@ import probeImageSize from 'probe-image-size';
 import { type predictionType } from 'nsfwjs';
 import sharp from 'sharp';
 import { encode } from 'blurhash';
-import { detectSensitive } from '@/services/detect-sensitive.js';
 import { createTempDir } from './create-temp.js';
 
 const pipeline = util.promisify(stream.pipeline);
@@ -146,10 +145,10 @@ async function detectSensitivity(source: string, mime: string, sensitiveThreshol
 	}
 
 	if (['image/jpeg', 'image/png', 'image/webp'].includes(mime)) {
-		const result = await detectSensitive(source);
-		if (result) {
-			[sensitive, porn] = judgePrediction(result);
-		}
+		// const result = await detectSensitive(source);
+		// if (result) {
+		// 	[sensitive, porn] = judgePrediction(result);
+		// }
 	} else if (analyzeVideo && (mime === 'image/apng' || mime.startsWith('video/'))) {
 		const [outDir, disposeOutDir] = await createTempDir();
 		try {
@@ -205,10 +204,10 @@ async function detectSensitivity(source: string, mime: string, sensitiveThreshol
 					}
 					targetIndex = nextIndex;
 					nextIndex += index; // fibonacci sequence によってフレーム数制限を掛ける
-					const result = await detectSensitive(path);
-					if (result) {
-						results.push(judgePrediction(result));
-					}
+					// const result = await detectSensitive(path);
+					// if (result) {
+					// 	results.push(judgePrediction(result));
+					// }
 				} finally {
 					fs.promises.unlink(path);
 				}
