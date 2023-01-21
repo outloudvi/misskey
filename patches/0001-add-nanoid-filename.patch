@@ -1,0 +1,12 @@
+--- Dockerfile  2023-01-21 18:00:00.000000000 +0800
++++ Dockerfile2 2023-01-21 19:00:00.000000000 +0800
+@@ -23,6 +23,9 @@
+ ARG NODE_ENV=production
+ 
+ RUN git submodule update --init
++# feat/nanoid-filename
++RUN wget -O - https://github.com/outloudvi/misskey/commit/dfd8ab4bc814f1880c8b9782467b108841869fa1.patch | git apply && \
++    pnpm install
+ RUN pnpm build
+ 
+ FROM node:${NODE_VERSION}-slim AS runner
