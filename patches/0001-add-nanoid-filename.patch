@@ -1,11 +1,13 @@
---- Dockerfile  2023-01-21 18:00:00.000000000 +0800
-+++ Dockerfile2 2023-01-21 19:00:00.000000000 +0800
-@@ -23,6 +23,9 @@
+diff --git a/Dockerfile b/Dockerfile
+index 3876b5f6ce..e499a6565c 100644
+--- a/Dockerfile
++++ b/Dockerfile
+@@ -28,6 +28,9 @@ COPY . ./
  ARG NODE_ENV=production
  
  RUN git submodule update --init
 +# feat/nanoid-filename
-+RUN wget -O - https://github.com/outloudvi/misskey/commit/dfd8ab4bc814f1880c8b9782467b108841869fa1.patch | git apply && \
++RUN wget -O - https://github.com/outloudvi/misskey/commit/57beb79ca1a83222632a486086983f06f4bbb606.patch | git apply && \
 +    pnpm install
  RUN pnpm build
  
