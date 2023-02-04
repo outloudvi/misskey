@@ -1,15 +1,16 @@
 diff --git a/Dockerfile b/Dockerfile
-index 3876b5f6ce..e499a6565c 100644
+index aaaaaaaaaa..bbbbbbbbbb 100644
 --- a/Dockerfile
 +++ b/Dockerfile
-@@ -28,6 +28,10 @@ COPY . ./
+@@ -28,6 +28,11 @@ COPY . ./
  ARG NODE_ENV=production
  
  RUN git submodule update --init
 +# feat/nanoid-filename
-+RUN wget -O - https://github.com/outloudvi/misskey/commit/39b4b28f647d57e4819d793ad6303dd9348deae2.patch | git apply && \
-+    wget -O - https://github.com/outloudvi/misskey/commit/57beb79ca1a83222632a486086983f06f4bbb606.patch | git apply && \
++RUN wget -O - https://github.com/outloudvi/misskey/commit/d56003fecf990bed379d67f9ef7b93973250695e.patch | git apply && \
++# feat/i-5964
++    wget -O - https://github.com/outloudvi/misskey/commit/39b4b28f647d57e4819d793ad6303dd9348deae2.patch | git apply && \
 +    pnpm install
  RUN pnpm build
  
- FROM node:${NODE_VERSION}-slim AS runner
+ FROM node:-slim AS runner
