@@ -19,5 +19,5 @@ index aaaaaaaaaa..bbbbbbbbbb 100644
 +    pnpm install
  RUN pnpm build
  
- FROM node:${NODE_VERSION}-slim AS runner
+ FROM node:\${NODE_VERSION}-slim AS runner
 EOF
