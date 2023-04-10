@@ -464,7 +464,7 @@ export class ClientServerService {
 				return await reply.view('note', {
 					note: _note,
 					profile,
-					avatarUrl: _note.user.avatarUrl,
+					ogImageUrl: _note.files?.find(x => x.type.startsWith('image/'))?.thumbnailUrl ?? _note.user.avatarUrl,
 					// TODO: Let locale changeable by instance setting
 					summary: getNoteSummary(_note),
 					instanceName: meta.name ?? 'Misskey',
