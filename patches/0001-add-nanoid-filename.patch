@@ -7,7 +7,7 @@ index aaaaaaaaaa..bbbbbbbbbb 100644
  
  RUN git submodule update --init
 +# feat/nanoid-filename
-+RUN wget -O - https://github.com/outloudvi/misskey/commit/803237cf07c8399596088cceacac1d47e3a2cd78.patch | git apply && \
++RUN wget -O - https://github.com/outloudvi/misskey/commit/6bd787b9ba6264ace389902a423271f404653df3.patch | git apply && \
 +# feat/i-5964
 +    wget -O - https://github.com/outloudvi/misskey/commit/b668c61af776ac2453fdfcaf2886a615470c0e61.patch | git apply && \
 +    pnpm install
