@@ -13,7 +13,7 @@ index aaaaaaaaa..bbbbbbbbb 100644
  
 +# feat/nanoid-filename
 +RUN wget -O - https://github.com/outloudvi/misskey/commit/${COMMIT_SHA_1}.patch | git apply && \\
-+	pnpm i --frozen-lockfile --aggregate-output
++	pnpm i
  RUN git submodule update --init
  RUN pnpm build
  RUN rm -rf .git/
