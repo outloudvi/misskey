@@ -7,13 +7,14 @@ diff --git a/Dockerfile b/Dockerfile
 index aaaaaaaaa..bbbbbbbbb 100644
 --- a/Dockerfile
 +++ b/Dockerfile
-@@ -26,6 +26,8 @@ COPY --link ["packages/sw/package.json", "./packages/sw/"]
- COPY --link ["packages/misskey-js/package.json", "./packages/misskey-js/"]
+@@ -32,6 +32,9 @@ COPY --link . ./
  
- RUN --mount=type=cache,target=/root/.local/share/pnpm/store,sharing=locked \\
-+	# feat/nanoid-filename
-+	wget -O - https://github.com/outloudvi/misskey/commit/${COMMIT_SHA_1}.patch | git apply && \\
- 	pnpm i --frozen-lockfile --aggregate-output
+ ARG NODE_ENV=production
  
- COPY --link . ./
++# feat/nanoid-filename
++RUN wget -O - https://github.com/outloudvi/misskey/commit/${COMMIT_SHA_1}.patch | git apply && \\
++	pnpm i --frozen-lockfile --aggregate-output
+ RUN git submodule update --init
+ RUN pnpm build
+ RUN rm -rf .git/
 EOF
