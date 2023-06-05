@@ -1,16 +1,13 @@
 diff --git a/Dockerfile b/Dockerfile
-index aaaaaaaaaa..bbbbbbbbbb 100644
+index aaaaaaaaa..bbbbbbbbb 100644
 --- a/Dockerfile
 +++ b/Dockerfile
-@@ -28,6 +28,11 @@ COPY . ./
- ARG NODE_ENV=production
+@@ -26,6 +26,8 @@ COPY --link ["packages/sw/package.json", "./packages/sw/"]
+ COPY --link ["packages/misskey-js/package.json", "./packages/misskey-js/"]
  
- RUN git submodule update --init
-+# feat/nanoid-filename
-+RUN wget -O - https://github.com/outloudvi/misskey/commit/6bd787b9ba6264ace389902a423271f404653df3.patch | git apply && \
-+# feat/i-5964
-+    wget -O - https://github.com/outloudvi/misskey/commit/b668c61af776ac2453fdfcaf2886a615470c0e61.patch | git apply && \
-+    pnpm install
- RUN pnpm build
+ RUN --mount=type=cache,target=/root/.local/share/pnpm/store,sharing=locked \
++	# feat/nanoid-filename
++	wget -O - https://github.com/outloudvi/misskey/commit/81a33ab20d01bf0e4eb59abb4db4b651c9996242.patch | git apply && \
+ 	pnpm i --frozen-lockfile --aggregate-output
  
- FROM node:${NODE_VERSION}-slim AS runner
+ COPY --link . ./
