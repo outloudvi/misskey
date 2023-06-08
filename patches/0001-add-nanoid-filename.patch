@@ -10,7 +10,7 @@ index aaaaaaaaa..bbbbbbbbb 100644
  
 +# feat/nanoid-filename
  RUN --mount=type=cache,target=/root/.local/share/pnpm/store,sharing=locked \
-+	wget -O - https://github.com/outloudvi/misskey/commit/81a33ab20d01bf0e4eb59abb4db4b651c9996242.patch | git apply && \
++	wget -O - https://github.com/outloudvi/misskey/commit/efcb8dcd31188c241ed2760a8e255c081b931aa6.patch | git apply && \
  	pnpm i --frozen-lockfile --aggregate-output
  
 -COPY --link . ./
