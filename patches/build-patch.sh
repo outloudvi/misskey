@@ -20,7 +20,7 @@ index aaaaaaaaa..bbbbbbbbb 100644
 -COPY --link . ./
 +	wget -O - https://github.com/outloudvi/misskey/commit/${COMMIT_SHA_1}.patch | git apply && \\
 +	pnpm i --frozen-lockfile --aggregate-output && \\
-+	pushd packages/frontend && pnpm i --save nanoid && popd
++	cd packages/frontend && pnpm i --save nanoid
  
  ARG NODE_ENV=production
  
