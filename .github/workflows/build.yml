@@ -17,13 +17,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout base repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           persist-credentials: false
           ref: readme
 
       - name: Checkout Misskey repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           repository: misskey-dev/misskey
           ref: ${{ inputs.ref }}
@@ -32,10 +32,7 @@ jobs:
       - name: Apply patches
         run: |
           cd misskey-base
-          pushd ../patches
-          bash build-patch.sh
-          popd
-          patch <../patches/*.patch
+          bash ../patches/apply-patch.sh
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
