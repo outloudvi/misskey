@@ -13,7 +13,7 @@ index aaaaaaaaa..bbbbbbbbb 100644
 -	pnpm i --frozen-lockfile --aggregate-output
 -
 -COPY --link . ./
-+	wget -O - https://github.com/outloudvi/misskey/commit/bd6bcea8b0ffa7e3907e43b08b01e555df6749df.patch | git apply && \
++	wget -O - https://github.com/outloudvi/misskey/commit/b27010bada3ff6cb077b97a5b1fd7367fd66a5e7.patch | git apply && \
 +	pnpm i --frozen-lockfile --aggregate-output && \
 +	cd packages/frontend && pnpm i --save nanoid
  
