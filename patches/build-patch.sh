@@ -7,21 +7,12 @@ diff --git a/Dockerfile b/Dockerfile
 index aaaaaaaaa..bbbbbbbbb 100644
 --- a/Dockerfile
 +++ b/Dockerfile
-@@ -24,11 +24,13 @@ COPY --link ["packages/backend/package.json", "./packages/backend/"]
- COPY --link ["packages/frontend/package.json", "./packages/frontend/"]
- COPY --link ["packages/sw/package.json", "./packages/sw/"]
- COPY --link ["packages/misskey-js/package.json", "./packages/misskey-js/"]
-+COPY --link . ./
+@@ -35,6 +35,8 @@ RUN --mount=type=cache,target=/root/.local/share/pnpm/store,sharing=locked \
+ COPY --link . ./
  
+ RUN git submodule update --init
 +# feat/nanoid-filename
- RUN --mount=type=cache,target=/root/.local/share/pnpm/store,sharing=locked \\
--	pnpm i --frozen-lockfile --aggregate-output
--
--COPY --link . ./
-+	wget -O - https://github.com/outloudvi/misskey/commit/${COMMIT_SHA_1}.patch | git apply && \\
-+	pnpm i --frozen-lockfile --aggregate-output && \\
-+	cd packages/frontend && pnpm i --save nanoid
- 
- ARG NODE_ENV=production
- 
++RUN wget -O - https://github.com/outloudvi/misskey/commit/${COMMIT_SHA_1}.patch | git apply
+ RUN pnpm build
+ RUN rm -rf .git/
 EOF
