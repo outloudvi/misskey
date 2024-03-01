@@ -4,9 +4,9 @@ on:
   workflow_dispatch:
     inputs:
       ref:
-        description: "Misskey commit"
+        description: 'Misskey commit'
         required: true
-        default: "develop"
+        default: 'develop'
         type: string
 
 permissions:
@@ -28,6 +28,11 @@ jobs:
           repository: misskey-dev/misskey
           ref: ${{ inputs.ref }}
           path: misskey-base
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm'
 
       - name: Apply patches
         run: |
