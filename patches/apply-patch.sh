@@ -18,7 +18,7 @@ apply_packages() {
         pushd "packages/$DIR"
         for j in $(echo "$PACKS" | tr ',' '\n'); do
             echo Installing "$j" to "$DIR"
-            npx pnpm install "$j"
+            npx pnpm@8 install "$j"
         done
         popd
     done
