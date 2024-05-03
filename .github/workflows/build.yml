@@ -8,6 +8,11 @@ on:
         required: true
         default: 'develop'
         type: string
+      tag:
+        description: 'Docker image tag'
+        required: false
+        default: ''
+        type: string
 
 permissions:
   packages: write
@@ -53,4 +58,4 @@ jobs:
         with:
           push: true
           context: misskey-base
-          tags: ghcr.io/outloudvi/misskey:${{ inputs.ref }}
+          tags: ghcr.io/outloudvi/misskey:${{ inputs.tag || inputs.ref }}
