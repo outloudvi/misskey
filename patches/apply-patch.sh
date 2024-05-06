@@ -32,5 +32,4 @@ shopt -s globstar
 apply_packages
 post_apply_packages
 apply_patch feat/nanoid-filename
-apply_patch feat/fe-debug
 shopt -u globstar
