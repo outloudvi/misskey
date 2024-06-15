@@ -24,6 +24,10 @@ apply_packages() {
     done
 }
 
+update_version() {
+    sed -i -E 's/"version": "(.*)"/"version": "\1-mkoutv"/' package.json
+}
+
 post_apply_packages() {
     rm -rf **/node_modules
 }
@@ -32,4 +36,5 @@ shopt -s globstar
 apply_packages
 post_apply_packages
 apply_patch feat/nanoid-filename
+update_version
 shopt -u globstar
