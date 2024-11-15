@@ -13,6 +13,11 @@ on:
         required: false
         default: ''
         type: string
+      sharkey:
+        description: "It's Shark!"
+        required: false
+        default: false
+        type: boolean
 
 permissions:
   packages: write
@@ -28,6 +33,13 @@ jobs:
           ref: readme
 
       - name: Checkout Misskey repo
+        if: ${{ ! inputs.sharkey }}
+        run: |
+          git clone https://activitypub.software/TransFem-org/Sharkey.git misskey-base
+          git checkout ${{ inputs.ref }}
+
+      - name: Checkout Sharkey repo
+        if: ${{ inputs.sharkey }}
         uses: actions/checkout@v4
         with:
           repository: misskey-dev/misskey
