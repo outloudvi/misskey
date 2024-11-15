@@ -44,6 +44,7 @@ jobs:
         if: ${{ inputs.sharkey }}
         run: |
           git clone https://activitypub.software/TransFem-org/Sharkey.git misskey-base
+          cd misskey-base
           git checkout ${{ inputs.ref }}
 
       - uses: actions/setup-node@v4
