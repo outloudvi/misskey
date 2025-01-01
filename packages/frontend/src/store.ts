@@ -130,10 +130,6 @@ export const defaultStore = markRaw(new Storage('base', {
 		where: 'account',
 		default: null as string | null,
 	},
-	pastedFileName: {
-		where: 'account',
-		default: 'yyyy-MM-dd HH-mm-ss [{{number}}]',
-	},
 	keepOriginalUploading: {
 		where: 'account',
 		default: false,
