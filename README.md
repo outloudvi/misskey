@@ -1,6 +1,7 @@
 ## Sharkey Feature Forks
 
-* [`feat/nanoid-filename`](https://github.com/outloudvi/misskey/tree/feat/nanoid-filename) (base: 2024.3.0)
+* [`feat/nanoid-filename`](https://github.com/outloudvi/misskey/tree/feat/nanoid-filename) (base: 2025.2.2)
+* [`chore/fe-anubis-credentials-omit`](https://github.com/outloudvi/misskey/tree/chore/fe-anubis-credentials-omit) (base: 2025.2.2)
 
 ## Previous Misskey Feature Forks
 

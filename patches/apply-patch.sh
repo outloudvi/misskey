@@ -36,5 +36,6 @@ shopt -s globstar
 apply_packages
 post_apply_packages
 apply_patch feat/nanoid-filename
+apply_patch chore/fe-anubis-credentials-omit
 update_version
 shopt -u globstar
