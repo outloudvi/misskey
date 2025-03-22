@@ -109,7 +109,6 @@ export class APIClient {
 				headers: {
 					'Content-Type': mediaType,
 				},
-				credentials: 'omit',
 				cache: 'no-cache',
 			}).then(async (res) => {
 				const body = res.status === 204 ? null : await res.json();

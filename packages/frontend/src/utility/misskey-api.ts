@@ -63,7 +63,6 @@ export function misskeyApi<
 		window.fetch(`${apiUrl}/${endpoint}`, {
 			method: 'POST',
 			body: JSON.stringify(data),
-			credentials: 'omit',
 			cache: 'no-cache',
 			headers,
 			signal,
@@ -123,7 +122,6 @@ export function misskeyApiGet<
 		// Send request
 		window.fetch(`${apiUrl}/${endpoint}?${query}`, {
 			method: 'GET',
-			credentials: 'omit',
 			cache: 'default',
 			headers,
 			signal,
