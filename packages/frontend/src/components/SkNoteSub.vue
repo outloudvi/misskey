@@ -40,7 +40,7 @@ SPDX-License-Identifier: AGPL-3.0-only
 					class="_button"
 					:class="$style.noteFooterButton"
 					:style="renoted ? 'color: var(--MI_THEME-accent) !important;' : ''"
-					@mousedown="renoted ? undoRenote() : boostVisibility($event.shiftKey)"
+					@click.stop="renoted ? undoRenote() : boostVisibility($event.shiftKey)"
 				>
 					<i class="ph-rocket-launch ph-bold ph-lg"></i>
 					<p v-if="note.renoteCount > 0" :class="$style.noteFooterButtonCount">{{ note.renoteCount }}</p>
@@ -50,17 +50,17 @@ SPDX-License-Identifier: AGPL-3.0-only
 					ref="quoteButton"
 					class="_button"
 					:class="$style.noteFooterButton"
-					@mousedown="quote()"
+					@click.stop="quote()"
 				>
 					<i class="ph-quotes ph-bold ph-lg"></i>
 				</button>
 				<button v-else class="_button" :class="$style.noteFooterButton" disabled>
 					<i class="ph-prohibit ph-bold ph-lg"></i>
 				</button>
-				<button v-if="note.myReaction == null && note.reactionAcceptance !== 'likeOnly'" ref="likeButton" :class="$style.noteFooterButton" class="_button" @mousedown="like()">
+				<button v-if="note.myReaction == null && note.reactionAcceptance !== 'likeOnly'" ref="likeButton" :class="$style.noteFooterButton" class="_button" @click.stop="like()">
 					<i class="ph-heart ph-bold ph-lg"></i>
 				</button>
-				<button v-if="note.myReaction == null" ref="reactButton" :class="$style.noteFooterButton" class="_button" @mousedown="react()">
+				<button v-if="note.myReaction == null" ref="reactButton" :class="$style.noteFooterButton" class="_button" @click.stop="react()">
 					<i v-if="note.reactionAcceptance === 'likeOnly'" class="ph-heart ph-bold ph-lg"></i>
 					<i v-else class="ph-smiley ph-bold ph-lg"></i>
 				</button>
@@ -73,7 +73,7 @@ SPDX-License-Identifier: AGPL-3.0-only
 				<button v-if="prefer.s.showTranslationButtonInNoteFooter && $i?.policies.canUseTranslator && instance.translatorAvailable" ref="translationButton" class="_button" :class="$style.footerButton" :disabled="translating || !!translation" @click.stop="translate()">
 					<i class="ti ti-language-hiragana"></i>
 				</button>
-				<button ref="menuButton" class="_button" :class="$style.noteFooterButton" @mousedown="menu()">
+				<button ref="menuButton" class="_button" :class="$style.noteFooterButton" @click.stop="menu()">
 					<i class="ph-dots-three ph-bold ph-lg"></i>
 				</button>
 			</footer>
