@@ -59,6 +59,12 @@ SPDX-License-Identifier: AGPL-3.0-only
 				<button v-if="note.myReaction != null" ref="reactButton" class="_button" :class="[$style.noteFooterButton, $style.reacted]" @click="undoReact(note)">
 					<i class="ph-minus ph-bold ph-lg"></i>
 				</button>
+				<button v-if="prefer.s.showClipButtonInNoteFooter" ref="clipButton" :class="$style.footerButton" class="_button" @click.stop="clip()">
+					<i class="ti ti-paperclip"></i>
+				</button>
+				<button v-if="prefer.s.showTranslationButtonInNoteFooter && $i?.policies.canUseTranslator && instance.translatorAvailable" ref="translationButton" class="_button" :class="$style.footerButton" :disabled="translating || !!translation" @click.stop="translate()">
+					<i class="ti ti-language-hiragana"></i>
+				</button>
 				<button ref="menuButton" class="_button" :class="$style.noteFooterButton" @mousedown="menu()">
 					<i class="ph-dots-three ph-bold ph-lg"></i>
 				</button>
@@ -78,7 +84,7 @@ SPDX-License-Identifier: AGPL-3.0-only
 </template>
 
 <script lang="ts" setup>
-import { computed, ref, shallowRef, watch } from 'vue';
+import { computed, inject, type Ref, ref, shallowRef, useTemplateRef, watch } from 'vue';
 import * as Misskey from 'misskey-js';
 import { computeMergedCw } from '@@/js/compute-merged-cw.js';
 import * as config from '@@/js/config.js';
@@ -101,11 +107,12 @@ import { showMovedDialog } from '@/utility/show-moved-dialog.js';
 import MkRippleEffect from '@/components/MkRippleEffect.vue';
 import { reactionPicker } from '@/utility/reaction-picker.js';
 import { claimAchievement } from '@/utility/achievements.js';
-import { getNoteMenu } from '@/utility/get-note-menu.js';
+import { getNoteClipMenu, getNoteMenu, translateNote } from '@/utility/get-note-menu.js';
 import { boostMenuItems, computeRenoteTooltip } from '@/utility/boost-quote.js';
 import { prefer } from '@/preferences.js';
 import { useNoteCapture } from '@/use/use-note-capture.js';
 import SkMutedNote from '@/components/SkMutedNote.vue';
+import { instance } from '@/instance';
 
 const props = withDefaults(defineProps<{
 	note: Misskey.entities.Note;
@@ -128,6 +135,7 @@ const translating = ref(false);
 const isDeleted = ref(false);
 const renoted = ref(false);
 const reactButton = shallowRef<HTMLElement>();
+const clipButton = useTemplateRef('clipButton');
 const renoteButton = shallowRef<HTMLElement>();
 const quoteButton = shallowRef<HTMLElement>();
 const menuButton = shallowRef<HTMLElement>();
@@ -152,6 +160,8 @@ const pleaseLoginContext = computed<OpenOnRemoteOptions>(() => ({
 	type: 'lookup',
 	url: appearNote.value.url ?? appearNote.value.uri ?? `${config.url}/notes/${appearNote.value.id}`,
 }));
+
+const currentClip = inject<Ref<Misskey.entities.Clip> | null>('currentClip', null);
 
 async function addReplyTo(replyNote: Misskey.entities.Note) {
 	replies.value.unshift(replyNote);
@@ -374,6 +384,14 @@ function quote() {
 function menu(): void {
 	const { menu, cleanup } = getNoteMenu({ note: props.note, translating, translation, isDeleted });
 	os.popupMenu(menu, menuButton.value).then(focus).finally(cleanup);
+}
+
+async function clip(): Promise<void> {
+	os.popupMenu(await getNoteClipMenu({ note: props.note, isDeleted, currentClip: currentClip?.value }), clipButton.value).then(focus);
+}
+
+async function translate() {
+	await translateNote(appearNote.value.id, translation, translating);
 }
 
 if (props.detail) {
