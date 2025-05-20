@@ -171,13 +171,13 @@ SPDX-License-Identifier: AGPL-3.0-only
 				<i v-else class="ph-smiley ph-bold ph-lg"></i>
 				<p v-if="(appearNote.reactionAcceptance === 'likeOnly' || prefer.s.showReactionsCount) && appearNote.reactionCount > 0" :class="$style.noteFooterButtonCount">{{ number(appearNote.reactionCount) }}</p>
 			</button>
-			<button v-if="prefer.s.showClipButtonInNoteFooter" ref="clipButton" class="_button" :class="$style.noteFooterButton" @mousedown.prevent="clip()">
+			<button v-if="prefer.s.showClipButtonInNoteFooter" ref="clipButton" class="_button" :class="$style.noteFooterButton" @click.stop="clip()">
 				<i class="ti ti-paperclip"></i>
 			</button>
-			<button v-if="prefer.s.showTranslationButtonInNoteFooter && $i?.policies.canUseTranslator && instance.translatorAvailable" ref="translationButton" class="_button" :class="$style.noteFooterButton" @mousedown.prevent="translate()">
+			<button v-if="prefer.s.showTranslationButtonInNoteFooter && $i?.policies.canUseTranslator && instance.translatorAvailable" ref="translationButton" class="_button" :class="$style.noteFooterButton" @click.stop="translate()">
 				<i class="ti ti-language-hiragana"></i>
 			</button>
-			<button ref="menuButton" class="_button" :class="$style.noteFooterButton" @mousedown.prevent="showMenu()">
+			<button ref="menuButton" class="_button" :class="$style.noteFooterButton" @click.stop="showMenu()">
 				<i class="ti ti-dots"></i>
 			</button>
 		</footer>
