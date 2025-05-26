@@ -45,7 +45,7 @@ mutuals: "ติดตามกันและกัน"
 _moderationLogTypes:
   approve: "ที่ได้รับการอนุมัติ"
   decline: "ปฏิเสธ"
-  setMandatoryCW: "Đặt cảnh báo nội dung cho người dùng"
+  setMandatoryCW: "ตั้งค่าคำเตือนเนื้อหาสำหรับผู้ใช้"
   setRemoteInstanceNSFW: "ตั้งค่าเซิร์ฟเวอร์ระยะไกลเป็น NSFW"
   unsetRemoteInstanceNSFW: "ปิดการใช้งานการตั้งค่าเซิร์ฟเวอร์ระยะไกลเป็น NSFW"
   rejectRemoteInstanceReports: "รายงานถูกปฏิเสธจากเซิร์ฟเวอร์ระยะไกล"
