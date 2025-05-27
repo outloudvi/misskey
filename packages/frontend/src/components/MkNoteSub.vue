@@ -84,10 +84,11 @@ SPDX-License-Identifier: AGPL-3.0-only
 </template>
 
 <script lang="ts" setup>
-import { computed, inject, type Ref, ref, shallowRef, useTemplateRef, watch } from 'vue';
+import { computed, inject, ref, shallowRef, useTemplateRef, watch } from 'vue';
 import * as Misskey from 'misskey-js';
 import { computeMergedCw } from '@@/js/compute-merged-cw.js';
 import * as config from '@@/js/config.js';
+import type { Ref } from 'vue';
 import type { Visibility } from '@/utility/boost-quote.js';
 import type { OpenOnRemoteOptions } from '@/utility/please-login.js';
 import MkNoteHeader from '@/components/MkNoteHeader.vue';
