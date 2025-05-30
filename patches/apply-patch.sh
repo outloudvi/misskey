@@ -37,5 +37,6 @@ apply_packages
 post_apply_packages
 apply_patch feat/nanoid-filename
 apply_patch chore/fe-anubis-credentials-omit
+apply_patch fix/page-load-note-throttled
 update_version
 shopt -u globstar
