@@ -1,4 +1,4 @@
-name: Build
+name: Build ${{ inputs.tag || inputs.ref }} based on ${{ inputs.ref }} ${{ inputs.sharkey == 'true' && ' (Sharkey)' || '' }}
 
 on:
   workflow_dispatch:
