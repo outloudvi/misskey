@@ -1,4 +1,6 @@
-name: Build ${{ inputs.tag || inputs.ref }} based on ${{ inputs.ref }} ${{ inputs.sharkey == 'true' && ' (Sharkey)' || '' }}
+name: Build custom Misskey OCI image
+
+run-name: Build ${{ inputs.tag || inputs.ref }} based on ${{ inputs.ref }} ${{ inputs.sharkey == 'true' && ' (Sharkey)' || '' }}
 
 on:
   workflow_dispatch:
