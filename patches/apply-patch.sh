@@ -1,9 +1,7 @@
 #!/bin/bash
 set -eu
 
-PACKAGES_TO_INSTALL=(
-    "frontend:nanoid"
-)
+PACKAGES_TO_INSTALL=()
 
 apply_patch() {
     COMMIT_SHA=$(jq -r '.commit.sha' <<<$(curl https://api.github.com/repos/outloudvi/misskey/branches/$1))
@@ -35,7 +33,6 @@ post_apply_packages() {
 shopt -s globstar
 apply_packages
 post_apply_packages
-apply_patch feat/nanoid-filename
 apply_patch chore/fe-anubis-credentials-omit
 update_version
 shopt -u globstar
